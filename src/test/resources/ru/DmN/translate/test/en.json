@@ -1,0 +1,7 @@
+{
+  "noFmt": "Translate without formatting",
+  "fmt": "Translate with formatting",
+  "fmtColorStyle": "§f2§siGreen & Italic",
+  "fmtValue": "i = {i}",
+  "fmtColorStyleValue": "§sbi §sr= §si{i}"
+}
