@@ -1,7 +1,9 @@
-package ru.DmN.translate
+package ru.DmN.translate.provider
 
-import ru.DmN.translate.GlobalTranslateProvider.RESOLVERS
-import ru.DmN.translate.GlobalTranslateProvider.TRANSLATE
+import ru.DmN.translate.provider.GlobalTranslateProvider.RESOLVERS
+import ru.DmN.translate.provider.GlobalTranslateProvider.TRANSLATE
+import ru.DmN.translate.Language
+import ru.DmN.translate.TranslationKey
 
 
 /**
@@ -12,9 +14,9 @@ import ru.DmN.translate.GlobalTranslateProvider.TRANSLATE
  */
 object GlobalTranslateProvider : TranslateProvider() {
     val RESOLVERS: MutableList<TranslateResolver> = ArrayList()
-    val TRANSLATE: MutableMap<Language, MutableMap<TranslateKey, String>> = HashMap()
+    val TRANSLATE: MutableMap<Language, MutableMap<TranslationKey, String>> = HashMap()
 
-    override fun translateNoFmtOrNull(language: Language, key: TranslateKey): String? {
+    override fun translateNoFmtOrNull(language: Language, key: TranslationKey): String? {
         val translates = TRANSLATE.getOrPut(language) { HashMap() }
         return translates.getOrPut(key) {
             RESOLVERS.forEach {
@@ -37,6 +39,6 @@ object GlobalTranslateProvider : TranslateProvider() {
          * @param language Необходимый язык.
          * @return `Перевод` - если есть, `null` - иначе.
          */
-        fun resolve(language: Language): Map<TranslateKey, String>?
+        fun resolve(language: Language): Map<TranslationKey, String>?
     }
 }

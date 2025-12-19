@@ -9,4 +9,4 @@ import kotlinx.serialization.Serializable
  */
 @JvmInline
 @Serializable
-value class TranslateKey(val key: String)
+value class TranslationKey(val key: String)
