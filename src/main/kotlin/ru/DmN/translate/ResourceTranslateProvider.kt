@@ -2,6 +2,9 @@ package ru.DmN.translate
 
 import kotlinx.serialization.json.Json
 
+/**
+ * Поставщик переводов с подгрузкой из [java.lang.Class.getResource].
+ */
 open class ResourceTranslateProvider(val path: String) : TranslateProvider() {
     private val cache: MutableMap<Language, MutableMap<TranslateKey, String>> = HashMap()
 
