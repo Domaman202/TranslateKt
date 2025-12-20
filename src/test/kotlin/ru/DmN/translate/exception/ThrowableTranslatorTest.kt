@@ -15,23 +15,12 @@ class ThrowableTranslatorTest {
     }
 
     object TestExceptionTranslator : ThrowableTranslator<TestException>() {
-        override fun translateOrNull(language: Language, throwable: TestException): String? {
+        override fun translate(language: Language, throwable: TestException): String {
             if (language == Language.ENGLISH)
                 return "Value of '${throwable}' is '${throwable.value}' (instance of ${throwable.value?.javaClass?.simpleName})"
-            return null
+            throw TranslationNotFoundException("Translation of '${throwable.javaClass.name}' not found")
         }
     }
-
-    @Test
-    @DisplayName("Перевод или null")
-    fun translateOrNullTest() {
-        val exception = TestException(123)
-        assertNull(exception.translator.translateOrNull(Language("ru"), exception))
-        val translate = exception.translator.translateOrNull(Language.ENGLISH, exception)
-        assertNotNull(translate)
-        assertEquals($$"Value of 'ru.DmN.translate.exception.ThrowableTranslatorTest$TestException' is '123' (instance of Integer)", translate)
-    }
-
 
     @Test
     @DisplayName("Перевод")

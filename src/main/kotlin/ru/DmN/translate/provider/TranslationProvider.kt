@@ -8,7 +8,7 @@ import ru.DmN.translate.exception.TranslationNotFoundException
 /**
  * Поставщик переводов.
  */
-abstract class TranslateProvider {
+abstract class TranslationProvider {
     /**
      * Перевод с форматированием.
      *
@@ -19,9 +19,9 @@ abstract class TranslateProvider {
      * @return Перевод.
      */
     @Throws(TranslationNotFoundException::class)
-    open fun translateFmt(language: Language, key: TranslationKey, vararg args: Pair<String, Any?>): String =
-        this.translateFmtOrNull(language, key, *args)
-            ?: GlobalTranslateProvider.translateFmtOrNull(language, key, *args)
+    open fun translate(language: Language, key: TranslationKey, vararg args: Pair<String, Any?>): String =
+        this.translateOrNull(language, key, *args)
+            ?: GlobalTranslationProvider.translateOrNull(language, key, *args)
             ?: throw TranslationNotFoundException("Translate of '${key.key}' not found")
 
     /**
@@ -32,7 +32,7 @@ abstract class TranslateProvider {
      * @param args Аргументы форматирования.
      * @return `Перевод` - если есть, `null` - иначе.
      */
-    open fun translateFmtOrNull(language: Language, key: TranslationKey, vararg args: Pair<String, Any?>): String? {
+    open fun translateOrNull(language: Language, key: TranslationKey, vararg args: Pair<String, Any?>): String? {
         var translate = this.translateNoFmtOrNull(language, key) ?: return null
         for ((key, value) in args)
             translate = translate.replace("{$key}", value.toString())
@@ -50,7 +50,7 @@ abstract class TranslateProvider {
     @Throws(TranslationNotFoundException::class)
     open fun translateNoFmt(language: Language, key: TranslationKey): String =
         this.translateNoFmtOrNull(language, key)
-            ?: GlobalTranslateProvider.translateNoFmtOrNull(language, key)
+            ?: GlobalTranslationProvider.translateNoFmtOrNull(language, key)
             ?: throw TranslationNotFoundException("Translate of '${key.key}' not found")
 
     /**

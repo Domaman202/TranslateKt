@@ -6,11 +6,11 @@ import ru.DmN.translate.TranslationKey
 /**
  * Пустой поставщик переводов.
  */
-open class EmptyTranslateProvider : TranslateProvider() {
+open class EmptyTranslationProvider : TranslationProvider() {
     override fun translateNoFmtOrNull(language: Language, key: TranslationKey): String? = null
 
     /**
      * Пустой поставщик переводов.
      */
-    companion object : EmptyTranslateProvider()
+    companion object : EmptyTranslationProvider()
 }

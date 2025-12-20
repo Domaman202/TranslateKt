@@ -9,7 +9,7 @@ import ru.DmN.translate.Language
  */
 abstract class ThrowableTranslator<in T> where T : Throwable {
     /**
-     * Перевод.
+     * Перевод с форматированием.
      *
      * @param language Язык перевода.
      * @param throwable Исключение.
@@ -17,17 +17,5 @@ abstract class ThrowableTranslator<in T> where T : Throwable {
      * @return Перевод.
      */
     @Throws(TranslationNotFoundException::class)
-    open fun translate(language: Language, throwable: T): String =
-        this.translateOrNull(language, throwable) ?: throw TranslationNotFoundException("Translate of '${throwable.javaClass}' not found")
-
-    /**
-     * Перевод.
-     *
-     * @param language Язык перевода.
-     * @param throwable Исключение.
-     * @throws TranslationNotFoundException Перевод не найден.
-     * @return `Перевод` - если найден, `null` - иначе.
-     */
-    @Throws(TranslationNotFoundException::class)
-    abstract fun translateOrNull(language: Language, throwable: T): String?
+    abstract fun translate(language: Language, throwable: T): String
 }

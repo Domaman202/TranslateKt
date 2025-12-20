@@ -1,7 +1,7 @@
 package ru.DmN.translate.provider
 
-import ru.DmN.translate.provider.GlobalTranslateProvider.RESOLVERS
-import ru.DmN.translate.provider.GlobalTranslateProvider.TRANSLATE
+import ru.DmN.translate.provider.GlobalTranslationProvider.RESOLVERS
+import ru.DmN.translate.provider.GlobalTranslationProvider.TRANSLATE
 import ru.DmN.translate.Language
 import ru.DmN.translate.TranslationKey
 
@@ -12,7 +12,7 @@ import ru.DmN.translate.TranslationKey
  * @property RESOLVERS Запросчики переводов.
  * @property TRANSLATE Список загруженных переводов.
  */
-object GlobalTranslateProvider : TranslateProvider() {
+object GlobalTranslationProvider : TranslationProvider() {
     val RESOLVERS: MutableList<TranslateResolver> = ArrayList()
     val TRANSLATE: MutableMap<Language, MutableMap<TranslationKey, String>> = HashMap()
 

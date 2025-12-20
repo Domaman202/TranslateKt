@@ -8,8 +8,8 @@ import ru.DmN.translate.exception.TranslationNotFoundException
 import kotlin.test.Test
 import kotlin.test.assertNull
 
-class EmptyTranslateProviderTest {
-    object TestProvider : EmptyTranslateProvider()
+class EmptyTranslationProviderTest {
+    object TestProvider : EmptyTranslationProvider()
 
     @Test
     @DisplayName("Перевод или null без форматирования")
@@ -28,16 +28,16 @@ class EmptyTranslateProviderTest {
 
     @Test
     @DisplayName("Перевод или null с форматированием")
-    fun translateFmtOrNullTest() {
-        assertNull(TestProvider.translateFmtOrNull(ENGLISH, TranslationKey("nullable")))
+    fun translateOrNullTest() {
+        assertNull(TestProvider.translateOrNull(ENGLISH, TranslationKey("nullable")))
     }
 
 
     @Test
     @DisplayName("Перевод с форматированием")
-    fun translateFmtTest() {
+    fun translateTest() {
         assertThrows<TranslationNotFoundException> {
-            TestProvider.translateFmt(ENGLISH, TranslationKey("notFound"))
+            TestProvider.translate(ENGLISH, TranslationKey("notFound"))
         }
     }
 }

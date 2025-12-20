@@ -17,25 +17,14 @@ class ITranslatedThrowableTest {
     }
 
     @Test
-    @DisplayName("Перевод или null")
-    fun translateOrNullTest() {
-        val exception = TestException(123)
-        assertNull(exception.translateOrNull(Language("ru")))
-        val translate = exception.translateOrNull(Language.ENGLISH)
-        kotlin.test.assertNotNull(translate)
-        assertEquals($$"Value of 'ru.DmN.translate.exception.ThrowableTranslatorTest$TestException' is '123' (instance of Integer)", translate)
-    }
-
-
-    @Test
     @DisplayName("Перевод")
     fun translateTest() {
-        val exception = TestException(321)
+        val exception = TestException(123)
         assertThrows<TranslationNotFoundException> {
             exception.translate(Language("ru"))
         }
         val translate = exception.translate(Language.ENGLISH)
         kotlin.test.assertNotNull(translate)
-        assertEquals($$"Value of 'ru.DmN.translate.exception.ThrowableTranslatorTest$TestException' is '321' (instance of Integer)", translate)
+        assertEquals($$"Value of 'ru.DmN.translate.exception.ThrowableTranslatorTest$TestException' is '123' (instance of Integer)", translate)
     }
 }
