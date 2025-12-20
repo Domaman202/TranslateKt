@@ -3,23 +3,19 @@ package ru.DmN.translate.exception
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.assertThrows
 import ru.DmN.translate.Language
+import ru.DmN.translate.provider.ResourceTranslateProvider
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 
-class ThrowableTranslatorTest {
+class ReflectiveThrowableTranslatorTest {
+    object TestProvider : ResourceTranslateProvider("ru/DmN/translate/test")
+    object TestTranslator : ReflectiveThrowableTranslator<Throwable>(TestProvider)
+
     class TestException(val value: Any?) : Exception(), ITranslatedThrowable<TestException> {
         override val translator: ThrowableTranslator<TestException>
-            get() = TestExceptionTranslator
-    }
-
-    object TestExceptionTranslator : ThrowableTranslator<TestException>() {
-        override fun translateOrNull(language: Language, throwable: TestException): String? {
-            if (language == Language.ENGLISH)
-                return "Value of '${throwable}' is '${throwable.value}' (instance of ${throwable.value?.javaClass?.simpleName})"
-            return null
-        }
+            get() = TestTranslator
     }
 
     @Test
@@ -29,7 +25,7 @@ class ThrowableTranslatorTest {
         assertNull(exception.translator.translateOrNull(Language("ru"), exception))
         val translate = exception.translator.translateOrNull(Language.ENGLISH, exception)
         assertNotNull(translate)
-        assertEquals($$"Value of 'ru.DmN.translate.exception.ThrowableTranslatorTest$TestException' is '123' (instance of Integer)", translate)
+        assertEquals("Value of throwable is '123'\u001B[00m", translate)
     }
 
 
@@ -42,6 +38,6 @@ class ThrowableTranslatorTest {
         }
         val translate = exception.translator.translate(Language.ENGLISH, exception)
         assertNotNull(translate)
-        assertEquals($$"Value of 'ru.DmN.translate.exception.ThrowableTranslatorTest$TestException' is '321' (instance of Integer)", translate)
+        assertEquals("Value of throwable is '321'\u001B[00m", translate)
     }
 }

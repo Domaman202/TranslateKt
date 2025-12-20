@@ -75,7 +75,7 @@ class ResourceTranslateProviderTest {
     @Test
     @DisplayName("Перевод или null со значением в форматировании")
     fun translateFmtOrNullValueTest() {
-        val fmt = TestProvider.translateFmtOrNull(ENGLISH, TranslationKey("fmtValue"), Pair("i", 202))
+        val fmt = TestProvider.translateFmtOrNull(ENGLISH, TranslationKey("fmtValue"), "i" to 202)
         assertNotNull(fmt)
         assertEquals("i = 202\u001B[00m", fmt)
     }
@@ -83,7 +83,7 @@ class ResourceTranslateProviderTest {
     @Test
     @DisplayName("Перевод со значением в форматировании")
     fun translateFmtValueTest() {
-        val fmt = TestProvider.translateFmt(ENGLISH, TranslationKey("fmtValue"), Pair("i", 202))
+        val fmt = TestProvider.translateFmt(ENGLISH, TranslationKey("fmtValue"), "i" to 202)
         assertNotNull(fmt)
         assertEquals("i = 202\u001B[00m", fmt)
     }
@@ -91,7 +91,7 @@ class ResourceTranslateProviderTest {
     @Test
     @DisplayName("Перевод или null с цветом, стилем и значением в форматировании")
     fun translateFmtOrNullValueColorStyleTest() {
-        val fmt = TestProvider.translateFmtOrNull(ENGLISH, TranslationKey("fmtColorStyleValue"), Pair("i", 777))
+        val fmt = TestProvider.translateFmtOrNull(ENGLISH, TranslationKey("fmtColorStyleValue"), "i" to 777)
         assertNotNull(fmt)
         assertEquals("\u001B[01mi \u001B[00m= \u001B[03m777\u001B[00m", fmt)
     }
@@ -99,7 +99,7 @@ class ResourceTranslateProviderTest {
     @Test
     @DisplayName("Перевод с цветом, стилем и значением в форматировании")
     fun translateFmtValueColorStyleTest() {
-        val fmt = TestProvider.translateFmt(ENGLISH, TranslationKey("fmtColorStyleValue"), Pair("i", 777))
+        val fmt = TestProvider.translateFmt(ENGLISH, TranslationKey("fmtColorStyleValue"), "i" to 777)
         assertNotNull(fmt)
         assertEquals("\u001B[01mi \u001B[00m= \u001B[03m777\u001B[00m", fmt)
     }

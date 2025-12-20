@@ -7,7 +7,7 @@ import ru.DmN.translate.Language
  *
  * @param T тип переводимого исключения.
  */
-abstract class ThrowableTranslator <T> where T : Throwable, T : ITranslatedThrowable<T> {
+abstract class ThrowableTranslator<in T> where T : Throwable {
     /**
      * Перевод.
      *

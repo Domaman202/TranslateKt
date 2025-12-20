@@ -5,5 +5,4 @@ package ru.DmN.translate.exception
  *
  * @param message Сообщение.
  */
-class TranslationNotFoundException(message: String) : RuntimeException(message) {
-}
+class TranslationNotFoundException(message: String) : RuntimeException(message)
