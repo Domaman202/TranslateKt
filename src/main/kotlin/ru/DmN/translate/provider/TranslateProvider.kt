@@ -22,7 +22,7 @@ abstract class TranslateProvider {
     open fun translateFmt(language: Language, key: TranslationKey, vararg args: Pair<String, Any?>): String =
         this.translateFmtOrNull(language, key, *args)
             ?: GlobalTranslateProvider.translateFmtOrNull(language, key, *args)
-            ?: throw TranslationNotFoundException("Translate of '$key' not found")
+            ?: throw TranslationNotFoundException("Translate of '${key.key}' not found")
 
     /**
      * Перевод с форматированием.
@@ -51,7 +51,7 @@ abstract class TranslateProvider {
     open fun translateNoFmt(language: Language, key: TranslationKey): String =
         this.translateNoFmtOrNull(language, key)
             ?: GlobalTranslateProvider.translateNoFmtOrNull(language, key)
-            ?: throw TranslationNotFoundException("Translate of '$key' not found")
+            ?: throw TranslationNotFoundException("Translate of '${key.key}' not found")
 
     /**
      * Перевод без форматирования.
