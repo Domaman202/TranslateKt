@@ -9,4 +9,11 @@ import kotlinx.serialization.Serializable
  */
 @JvmInline
 @Serializable
-value class TranslationKey(val key: String)
+value class TranslationKey(val key: String) {
+    companion object {
+        inline fun <reified T> of(): TranslationKey =
+            TranslationKey(T::class.java.name)
+        inline fun <reified T> of(category: String): TranslationKey =
+            TranslationKey("${T::class.java.name}.$category")
+    }
+}
