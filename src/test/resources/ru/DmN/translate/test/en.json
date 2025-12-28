@@ -2,7 +2,7 @@
   "noFmt": "Translate without formatting",
   "fmt": "Translate with formatting",
   "fmtColorStyle": "§f2§siGreen & Italic",
-  "fmtValue": "i = {i}",
-  "fmtColorStyleValue": "§sbi §sr= §si{i}",
-  "ru.DmN.translate.exception.ReflectiveThrowableTranslatorTest$TestException": "Value of throwable is '{value}'"
+  "fmtValue": "i = §{i}",
+  "fmtColorStyleValue": "§sbi §sr= §si§{i}",
+  "ru.DmN.translate.exception.ReflectiveThrowableTranslatorTest$TestException": "Value of throwable is '§{value}'"
 }

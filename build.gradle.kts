@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "io.github.domaman202"
-version = "1.3.1"
+version = "1.4.0"
 
 repositories {
     mavenCentral()
@@ -16,7 +16,7 @@ repositories {
 }
 
 dependencies {
-    implementation("io.github.domaman202:CmdStyleKt:1.0.1")
+    implementation("io.github.domaman202:CmdStyleKt:1.1.0")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0")
     testImplementation(kotlin("test"))
 }

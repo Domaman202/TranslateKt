@@ -32,12 +32,8 @@ abstract class TranslationProvider {
      * @param args Аргументы форматирования.
      * @return `Перевод` - если есть, `null` - иначе.
      */
-    open fun translateOrNull(language: Language, key: TranslationKey, vararg args: Pair<String, Any?>): String? {
-        var translate = this.translateNoFmtOrNull(language, key) ?: return null
-        for ((key, value) in args)
-            translate = translate.replace("{$key}", value.toString())
-        return translate.fmt
-    }
+    open fun translateOrNull(language: Language, key: TranslationKey, vararg args: Pair<String, Any?>): String? =
+        this.translateNoFmtOrNull(language, key)?.fmt(*args)
 
     /**
      * Перевод без форматирования.
