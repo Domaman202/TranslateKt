@@ -16,7 +16,7 @@ repositories {
 }
 
 dependencies {
-    implementation("io.github.domaman202:CmdStyleKt:1.2.0")
+    implementation("io.github.domaman202:CmdStyleKt:1.2.1")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0")
     testImplementation(kotlin("test"))
 }
