@@ -1,5 +1,6 @@
 package ru.DmN.translate.exception
 
+import ru.DmN.cmd.style.FmtException
 import ru.DmN.translate.Language
 
 /**
@@ -13,9 +14,10 @@ abstract class ThrowableTranslator<in T> where T : Throwable {
      *
      * @param language Язык перевода.
      * @param throwable Исключение.
-     * @throws TranslationNotFoundException Перевод не найден.
      * @return Перевод.
+     * @throws TranslationNotFoundException Перевод не найден.
+     * @throws FmtException Ошибка форматирования.
      */
-    @Throws(TranslationNotFoundException::class)
+    @Throws(TranslationNotFoundException::class, FmtException::class)
     abstract fun translate(language: Language, throwable: T): String
 }

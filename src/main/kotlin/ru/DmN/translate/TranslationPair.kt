@@ -1,5 +1,6 @@
 package ru.DmN.translate
 
+import ru.DmN.cmd.style.FmtException
 import ru.DmN.translate.exception.TranslationNotFoundException
 import ru.DmN.translate.provider.TranslationProvider
 
@@ -12,10 +13,11 @@ data class TranslationPair(val key: TranslationKey, val provider: TranslationPro
      * Перевод с форматированием.
      *
      * @param language Язык перевода.
-     * @throws TranslationNotFoundException Перевод не найден.
      * @return Перевод.
+     * @throws TranslationNotFoundException Перевод не найден.
+     * @throws FmtException Ошибка форматирования.
      */
-    @Throws(TranslationNotFoundException::class)
+    @Throws(TranslationNotFoundException::class, FmtException::class)
     fun translate(language: Language): String =
         this.provider.translate(language, this.key)
 }

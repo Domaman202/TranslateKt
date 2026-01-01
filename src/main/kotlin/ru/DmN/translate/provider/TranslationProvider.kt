@@ -1,5 +1,6 @@
 package ru.DmN.translate.provider
 
+import ru.DmN.cmd.style.FmtException
 import ru.DmN.cmd.style.FmtUtils.fmt
 import ru.DmN.translate.Language
 import ru.DmN.translate.TranslationKey
@@ -15,10 +16,11 @@ abstract class TranslationProvider {
      * @param language Язык перевода.
      * @param key Ключ перевода.
      * @param args Аргументы форматирования.
-     * @throws TranslationNotFoundException Перевод не найден.
      * @return Перевод.
+     * @throws TranslationNotFoundException Перевод не найден.
+     * @throws FmtException Ошибка форматирования.
      */
-    @Throws(TranslationNotFoundException::class)
+    @Throws(TranslationNotFoundException::class, FmtException::class)
     open fun translate(language: Language, key: TranslationKey, vararg args: Pair<String, Any?>): String =
         this.translateOrNull(language, key, *args)
             ?: GlobalTranslationProvider.translateOrNull(language, key, *args)
@@ -31,7 +33,9 @@ abstract class TranslationProvider {
      * @param key Ключ перевода.
      * @param args Аргументы форматирования.
      * @return `Перевод` - если есть, `null` - иначе.
+     * @throws FmtException Ошибка форматирования.
      */
+    @Throws(FmtException::class)
     open fun translateOrNull(language: Language, key: TranslationKey, vararg args: Pair<String, Any?>): String? =
         this.translateNoFmtOrNull(language, key)?.fmt(*args)
 

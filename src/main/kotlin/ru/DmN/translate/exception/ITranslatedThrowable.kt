@@ -1,5 +1,6 @@
 package ru.DmN.translate.exception
 
+import ru.DmN.cmd.style.FmtException
 import ru.DmN.translate.Language
 
 /**
@@ -10,10 +11,11 @@ interface ITranslatedThrowable<in T> where T : Throwable, T : ITranslatedThrowab
      * Перевод с форматированием.
      *
      * @param language Язык перевода.
-     * @throws TranslationNotFoundException Перевод не найден.
      * @return Перевод.
+     * @throws TranslationNotFoundException Перевод не найден.
+     * @throws FmtException Ошибка форматирования.
      */
-    @Throws(TranslationNotFoundException::class)
+    @Throws(TranslationNotFoundException::class, FmtException::class)
     fun translate(language: Language): String =
         @Suppress("UNCHECKED_CAST")
         this.translator.translate(language, this as T)
